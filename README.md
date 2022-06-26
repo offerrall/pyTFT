@@ -8,8 +8,6 @@ To fully understand this wrapper it is essential that you read the official docu
 Example
 ---------------------------
 
-.. code:: python
-
     from TFT_API import *
 
     # Data
