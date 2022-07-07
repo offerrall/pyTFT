@@ -1,9 +1,12 @@
 Info
 ---------------------------
 Simple, direct and lightweight wrapper to all TFT related RIOT API calls.
-This wrapper can be used directly in your code or use it as a base to create a higher level wrapper, it has no dependencies.
+This wrapper can be used directly in your code or use it as a base to create a higher level wrappe.
 To fully understand this wrapper it is essential that you read the official documentation of the api: https://developer.riotgames.com/docs/portal
 
+Requirements
+---------------------------
+- https://pypi.org/project/requests/
 
 Example
 ---------------------------
