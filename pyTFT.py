@@ -33,10 +33,8 @@ def get_data() -> dict:
 
 def error_handle(status_code: int):
     """Internal function that controls the different errors in all requests
-
     Args:
         status_code (int): Request.status_code
-
     Raises:
         Exception: An exception pops up with the name of the error
     """
@@ -51,12 +49,12 @@ def get_summoner_by_name(name_player: str, server_name: str, api_key: str) -> di
         name_player (str): League of Legends player name
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
-
     Returns:
         dict: Summoner
     
     """
-    
+    spaces = "%20"
+    name_player = name_player.replace(" ", spaces)
     api_call = f"https://{server_name}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name_player}"
     call = requests.get(api_call, params={"api_key" : api_key})
     error_handle(call.status_code)
@@ -65,12 +63,10 @@ def get_summoner_by_name(name_player: str, server_name: str, api_key: str) -> di
 
 def get_summoner_by_puuid(encrypted_puuid: str, server_name: str, api_key: str) -> dict:
     """Direct call to /tft/summoner/v1/summoners/by-puuid/{encrypted_puuid}
-
     Args:
         encrypted_puuid (str): Puuid associated to the player obtained by some get_summoner()
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
-
     Returns:
         dict: Summoner
         
@@ -84,12 +80,10 @@ def get_summoner_by_puuid(encrypted_puuid: str, server_name: str, api_key: str) 
 
 def get_summoner_by_account_id(encrypted_account_id: str, server_name: str, api_key: str) -> dict:
     """Direct call to /tft/summoner/v1/summoners/by-account/{encrypted_account_id}
-
     Args:
         encrypted_account_id (str): AccountId associated to the player obtained by some get_summoner()
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
-
     Returns:
         dict: Summoner
         
@@ -103,12 +97,10 @@ def get_summoner_by_account_id(encrypted_account_id: str, server_name: str, api_
 
 def get_summoner_by_summoner_id(encryptencrypted_summoner_id: str, server_name: str, api_key: str) -> dict:
     """Direct call to /tft/summoner/v1/summoners/{encryptencrypted_summoner_id}
-
     Args:
         encrypted_account_id (str): AccountId associated to the player obtained by some get_summoner()
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
-
     Returns:
         dict: Summoner
         
@@ -131,7 +123,6 @@ def get_matches_by_puuid(puuid: str, region: str, api_key: str, n_games: int, st
         start (int): Start index, defaults to 0
         optional start_time (int): Time in EPOCH where the search begins
         optional end_time (int): Time in EPOCH where search ends
-
     Returns:
         dict: list of match_ids
     
@@ -172,7 +163,6 @@ def get_info_matches(matches: list[dict], region: str, api_key: str) -> list[dic
         
     Returns:
         list[dict]: Information of all match_ids
-
     """
     
     threads_list = []
@@ -193,7 +183,6 @@ def get_league_master(server_name: str, api_key: str) -> dict:
     Args:
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
-
     Returns:
         dict: list of master players of type LeagueList
     
@@ -211,7 +200,6 @@ def get_league_grandmaster(server_name: str, api_key: str) -> dict:
     Args:
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
-
     Returns:
         dict: list of grandmaster players of type LeagueList
     
@@ -229,7 +217,6 @@ def get_league_challenger(server_name: str, api_key: str) -> dict:
     Args:
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
-
     Returns:
         dict: list of challenger players of type LeagueList
     
@@ -248,7 +235,6 @@ def get_league_by_summoner(summoner_id: str, server_name: str, api_key: str) -> 
         server_name (str): Server from this tuple: get_data()["servers"]
         api_key (str): API access key
         summoner_id (str): Id associated to the player obtained by some get_summoner()
-
     Returns:
         dict: Information of a player in tft of type LeagueEntry
     """
@@ -268,7 +254,6 @@ def get_league_by_tier_division(tier: str, division: str, server_name: str, api_
         division (str): Division from this tuple: get_data()["divisions"]
         api_key (str): API access key
         optional page(int): Index to search, by default in 
-
     Returns:
         dict: list of players of {tier}{division} of type LeagueEntry
     """
@@ -286,7 +271,6 @@ def get_league_by_leagueid(league_id: str, server_name: str, api_key: str) -> di
         server_name (str): Server from this tuple: get_data()["servers"]
         league_id (str): The UUID of the league obtained by some get_league()
         api_key (str): API access key
-
     Returns:
         dict: list of players of {league_id} of type LeagueList
     """
@@ -304,7 +288,6 @@ def get_league_rated_ladders(queue: str, server_name: str, api_key: str) -> dict
         server_name (str): Server from this tuple: get_data()["servers"]
         queue (str): Queue from this tuple: get_data()["queues"]
         api_key (str): API access key
-
     Returns:
         dict: list of players of type TopRatedLadderEntry
     
